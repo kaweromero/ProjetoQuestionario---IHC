@@ -9,8 +9,17 @@ import javax.swing.border.BevelBorder;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
+import javax.swing.JTextField;
+import javax.swing.JList;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class TelaQuestio2 extends JPanel {
+	private JTextField textFieldCEP;
+	private JTextField textFieldRua;
+	private JTextField textFieldBairro;
+	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Create the panel.
@@ -21,7 +30,7 @@ public class TelaQuestio2 extends JPanel {
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("CEP");
-		lblNewLabel.setBounds(278, 167, 46, 14);
+		lblNewLabel.setBounds(462, 151, 46, 14);
 		add(lblNewLabel);
 		
 		JPanel panel = new JPanel();
@@ -70,9 +79,61 @@ public class TelaQuestio2 extends JPanel {
 		panel_3.add(label_2);
 		
 		JLabel lblRua = new JLabel("Rua");
-		lblRua.setBounds(278, 210, 46, 14);
+		lblRua.setBounds(462, 201, 46, 14);
 		add(lblRua);
 		
+		JLabel lblEndereo = new JLabel("Dados de endere\u00E7o");
+		lblEndereo.setFont(new Font("Georgia", Font.BOLD, 20));
+		lblEndereo.setBounds(402, 87, 264, 24);
+		add(lblEndereo);
+		
+		JLabel label_3 = new JLabel("Campos com asterisco (*) s\u00E3o obrigat\u00F3rios");
+		label_3.setFont(new Font("Tahoma", Font.BOLD, 12));
+		label_3.setBounds(20, 150, 286, 14);
+		add(label_3);
+		
+		textFieldCEP = new JTextField();
+		textFieldCEP.setColumns(10);
+		textFieldCEP.setBounds(500, 148, 86, 20);
+		add(textFieldCEP);
+		
+		textFieldRua = new JTextField();
+		textFieldRua.setColumns(10);
+		textFieldRua.setBounds(500, 198, 264, 20);
+		add(textFieldRua);
+		
+		JLabel lblNewLabel_1 = new JLabel("Bairro");
+		lblNewLabel_1.setBounds(445, 251, 54, 14);
+		add(lblNewLabel_1);
+		
+		textFieldBairro = new JTextField();
+		textFieldBairro.setBounds(500, 248, 86, 20);
+		add(textFieldBairro);
+		textFieldBairro.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("Cidade");
+		lblNewLabel_2.setBounds(445, 302, 46, 14);
+		add(lblNewLabel_2);
+		
+		textField = new JTextField();
+		textField.setBounds(500, 298, 109, 20);
+		add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel_3 = new JLabel("Estado");
+		lblNewLabel_3.setBounds(445, 351, 46, 14);
+		add(lblNewLabel_3);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(500, 348, 86, 20);
+		add(textField_1);
+		textField_1.setColumns(10);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Acre (AC)", "Alagoas (AL)", "Amap\u00E1 (AP)", "Amazonas (AM)", "Bahia (BA)", "Cear\u00E1 (CE)", "Distrito Federal (DF)", "Esp\u00EDrito Santo (ES)", "Goi\u00E1s (GO)", "Maranh\u00E3o (MA)", "Mato Grosso (MT)", "Mato Grosso do Sul (MS)", "Minas Gerais (MG)", "Par\u00E1 (PA) ", "Para\u00EDba (PB)", "Paran\u00E1 (PR)", "Pernambuco (PE)", "Piau\u00ED (PI)", "Rio de Janeiro (RJ)", "Rio Grande do Norte (RN)", "Rio Grande do Sul (RS)", "Rond\u00F4nia (RO)", "Roraima (RR)", "Santa Catarina (SC)", "S\u00E3o Paulo (SP)", "Sergipe (SE)", "Tocantins (TO)"}));
+		comboBox.setToolTipText("");
+		comboBox.setBounds(648, 348, 179, 20);
+		add(comboBox);
+		
 	}
-
 }

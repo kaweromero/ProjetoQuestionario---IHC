@@ -46,6 +46,7 @@ public class TelaPrincipals extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaPrincipals() {
+		super("Super Cadastro de Estágio! @ByKawêRomero");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
