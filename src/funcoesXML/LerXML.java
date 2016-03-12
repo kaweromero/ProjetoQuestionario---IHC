@@ -18,7 +18,7 @@ public class LerXML {
 		FileReader reader = null;
 		try {
 			//carrega o arquivo XML para um objeto reader
-			reader = new FileReader("D:/Projeto XML/HUE.xml");
+			reader = new FileReader("D:/CadastroEstagiarios.xml");
 		} catch (Exception e) {
 			
 			System.out.println("Arquivo nao encontrado");
@@ -27,16 +27,16 @@ public class LerXML {
 		//Cria o objeto xstream
 		XStream xStream = new XStream(new DomDriver());
 		//Desirializa o arquivo para um objeto
-		Pessoa pessoa = (Pessoa) xStream.fromXML(reader);
+		//Estagiario pessoa = (Estagiario) xStream.fromXML(reader);
 		
-		System.out.println(pessoa.getLogin());
+		//System.out.println(pessoa.getLogin());
 	}
 		
 
-	public void gravarArquivo(Pessoa pessoa, XStream xstream){
+	public void gravarArquivo(Estagiario pessoa, XStream xstream){
 	
 
-	File xmlMap = new File("D:/Projeto XML/HUE.xml");
+	File xmlMap = new File("D:/CadastroEstagiarios.xml");
 	OutputStream streamOut = null;	
 	
 	try{

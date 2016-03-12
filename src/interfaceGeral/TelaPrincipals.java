@@ -1,15 +1,21 @@
 package interfaceGeral;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JScrollPane;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+
+import funcoesXML.Estagiario;
+import funcoesXML.LerXML;
+
 import javax.swing.JLabel;
-import java.awt.Dimension;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -20,9 +26,13 @@ public class TelaPrincipals extends JFrame {
 
 	private JPanel contentPane;
 
-	private TelaQuestio1 tela1 = new TelaQuestio1();
-	private TelaQuestio2 tela2 = new TelaQuestio2();
-	private TelaQuestio3 tela3 = new TelaQuestio3();
+	public LerXML objeXML = new LerXML();
+	XStream xstream = new XStream(new DomDriver());
+	LerXML lergravar = new LerXML();
+	Estagiario estagiario = new Estagiario();
+	private TelaQuestio1 tela1 = new TelaQuestio1(objeXML);
+	private TelaQuestio2 tela2 = new TelaQuestio2(objeXML);
+	private TelaQuestio3 tela3 = new TelaQuestio3(objeXML);
 	boolean testeTela1 = false;
 	boolean testeTela2 = false;
 	boolean testeTela3 = false;
@@ -75,9 +85,7 @@ public class TelaPrincipals extends JFrame {
 		botaoVoltar.setBounds(635, 624, 106, 36);
 		add(botaoVoltar);
 		botaoVoltar.setVisible(false);
-		
-		
-		
+			
 		
 		botaoContinuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -112,11 +120,25 @@ public class TelaPrincipals extends JFrame {
 						testeTela3 = true;
 						testeTela2 = false;
 						validate();
+					}else{
+						if(testeTela3 == true && testeTela2 == false && testeTela1 == false){
+							
+							//System.out.println(tela1.textFieldCPF.getText());
+							//System.out.println(tela2.boxEstados.getSelectedItem());
+							
+							//Cadastrar estagiario
+							try{
+								cadastrar(estagiario);
+								lergravar.gravarArquivo(estagiario, xstream);
+								JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+								System.exit(0);
+							}catch(Exception e){
+								
+								JOptionPane.showMessageDialog(null, "Erro ao cadastrar, contate o administrador!");
+							}
+						}
 					}
-					
-				}
-				
-				
+				}				
 			}
 		});
 		
@@ -155,22 +177,15 @@ public class TelaPrincipals extends JFrame {
 						botaoContinuar.setVisible(true);
 						botaoVoltar.setVisible(true);
 						validate();
-					}
+					}	
 					
-					
-				}
-				
-				
-				
+				}				
 				
 			}
 		});
-		
-		
-		
+				
 		//****************
-		
-		
+			
 		JLabel lblNewLabel = new JLabel("Cadastro de est\u00E1gio");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Georgia", Font.BOLD, 20));
@@ -199,7 +214,50 @@ public class TelaPrincipals extends JFrame {
 				botaoContinuar.setVisible(true);
 				botaoVoltar.setVisible(true);
 				validate();
+				
+				
+				
 			}
 		});
+	}
+	
+	public void cadastrar(Estagiario estagiario){
+		
+		estagiario.setNomeCompleto(tela1.textFieldNomeCompleto.getText());
+		estagiario.setCPF(tela1.textFieldCPF.getText());
+		estagiario.setDataNascimento(tela1.textFieldDataNascimento.getText());	
+		estagiario.setIdade(tela1.textFieldIdade.getText());
+		estagiario.setTelefone(tela1.textFieldTelefone.getText());
+		estagiario.setTelefoneResidencial(tela1.textFieldTelefoneResidencial.getText());
+		estagiario.setEmail(tela1.textFieldEmail.getText());
+		estagiario.setConfirmarEmail(tela1.textFieldConfirmarEmail.getText());
+		
+		
+		estagiario.setDeficiente(tela1.testeDeficiente());
+		
+		estagiario.setCEP(tela2.textFieldCEP.getText());
+		estagiario.setRua(tela2.textFieldRua.getText());
+		estagiario.setBairro(tela2.textFieldBairro.getText());
+		estagiario.setCidade(tela2.textFieldCidade.getText());
+		estagiario.setComplemento(tela2.textFieldComplemento.getText());
+		estagiario.setEstado(tela2.boxEstados.getSelectedItem()+"");
+		
+		estagiario.setInstituicao(tela3.textFieldInstituicao.getText());
+		estagiario.setCurso(tela3.textFieldCurso.getText());
+		estagiario.setTurno(tela3.textFieldTurno.getText());
+		estagiario.setLocalDiferente(tela3.textFieldLocalDiferente.getText());
+		estagiario.setCurriculo(tela3.textPaneCurriculo.getText());
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 }

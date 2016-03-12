@@ -5,6 +5,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
+
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.border.MatteBorder;
 import javax.swing.SwingConstants;
@@ -13,26 +15,35 @@ import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.plaf.basic.BasicBorders.RadioButtonBorder;
+
+import funcoesXML.LerXML;
+
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class TelaQuestio1 extends JPanel {
-	private JTextField textFieldNomeCompleto;
-	private JTextField textFieldCPF;
-	private JTextField textFieldDataNascimento;
-	private JTextField textFieldIdade;
-	private JTextField textFieldTelefone;
-	private JTextField textFieldEmail;
-	private JTextField textField;
-	private JTextField textField_1;
+	public JTextField textFieldNomeCompleto;
+	public JTextField textFieldCPF;
+	public JTextField textFieldDataNascimento;
+	public JTextField textFieldIdade;
+	public JTextField textFieldTelefone;
+	public JTextField textFieldTelefoneResidencial;
+	public JTextField textFieldEmail;
+	public JTextField textFieldConfirmarEmail;
+	public JRadioButton radioBotaoSim = new JRadioButton("Sim");
+	public JRadioButton radioBotaoNao = new JRadioButton("N\u00E3o");
+	
+	public LerXML arquivoXML;
+	public ButtonGroup grupo1 = new ButtonGroup();
 
 	/**
 	 * Create the panel.
 	 */
-	public TelaQuestio1() {
+	public TelaQuestio1(LerXML arquiXML) {
 
-		
+		this.arquivoXML = arquiXML;
 		setBounds(100, 100, 1000, 700);
 		setLayout(null);
 		
@@ -71,7 +82,7 @@ public class TelaQuestio1 extends JPanel {
 		add(panel);
 		
 		JPanel panelEtapa1 = new JPanel();
-		panelEtapa1.setBackground(new Color(153, 255, 102));
+		panelEtapa1.setBackground(new Color(255, 255, 153));
 		panelEtapa1.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panelEtapa1.setBounds(49, 11, 98, 58);
 		panelEtapa1.setLayout(null);
@@ -121,15 +132,20 @@ public class TelaQuestio1 extends JPanel {
 		JLabel lblNewLabel = new JLabel("Possui alguma difici\u00EAncia?");
 		lblNewLabel.setBounds(341, 551, 159, 14);
 		add(lblNewLabel);
+		////////**********////////
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Sim");
-		rdbtnNewRadioButton.setBounds(500, 547, 51, 23);
-		add(rdbtnNewRadioButton);
+		radioBotaoSim.setBounds(500, 547, 51, 23);
+		add(radioBotaoSim);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("N\u00E3o");
-		rdbtnNewRadioButton_1.setBounds(553, 547, 62, 23);
-		add(rdbtnNewRadioButton_1);
 		
+		radioBotaoNao.setBounds(553, 547, 62, 23);
+		add(radioBotaoNao);
+		
+		grupo1.add(radioBotaoNao);
+		grupo1.add(radioBotaoSim);
+		
+		
+		////////**********////////
 		JLabel lblTelefone = new JLabel("Telefone (Celular)");
 		lblTelefone.setBounds(390, 351, 113, 14);
 		add(lblTelefone);
@@ -143,7 +159,7 @@ public class TelaQuestio1 extends JPanel {
 		add(lblNewLabel_2);
 		
 		textFieldTelefone = new JTextField();
-		textFieldTelefone.setBounds(500, 348, 86, 20);
+		textFieldTelefone.setBounds(500, 348, 106, 20);
 		add(textFieldTelefone);
 		textFieldTelefone.setColumns(10);
 		
@@ -153,10 +169,10 @@ public class TelaQuestio1 extends JPanel {
 		add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 		
-		textField = new JTextField();
-		textField.setBounds(500, 498, 271, 20);
-		add(textField);
-		textField.setColumns(10);
+		textFieldConfirmarEmail = new JTextField();
+		textFieldConfirmarEmail.setBounds(500, 498, 271, 20);
+		add(textFieldConfirmarEmail);
+		textFieldConfirmarEmail.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Somente n\u00FAmeros   Ex: 09011122299");
 		lblNewLabel_4.setBounds(635, 201, 216, 14);
@@ -191,10 +207,11 @@ public class TelaQuestio1 extends JPanel {
 		label_3.setBounds(449, 299, 9, 14);
 		add(label_3);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(500, 398, 86, 20);
-		add(textField_1);
-		textField_1.setColumns(10);
+		textFieldTelefoneResidencial = new JTextField();
+		textFieldTelefoneResidencial.setBounds(500, 398, 106, 20);
+		add(textFieldTelefoneResidencial);
+		textFieldTelefoneResidencial.setText(" ");
+		textFieldTelefoneResidencial.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("Telefone (Residencial)");
 		lblNewLabel_6.setBounds(366, 401, 140, 14);
@@ -233,7 +250,34 @@ public class TelaQuestio1 extends JPanel {
 		lblNewLabel_7.setBounds(402, 91, 264, 14);
 		add(lblNewLabel_7);
 		
+		JLabel lblDddNmero = new JLabel("DDD + N\u00FAmero  Ex: 01140028922");
+		lblDddNmero.setBounds(635, 351, 242, 14);
+		add(lblDddNmero);
+		
+		JLabel label_8 = new JLabel("DDD + N\u00FAmero  Ex: 01140028922");
+		label_8.setBounds(635, 401, 242, 14);
+		add(label_8);
+		
+		JLabel lblExamploexemplocom = new JLabel("exemplo@exemplo.com");
+		lblExamploexemplocom.setBounds(783, 451, 217, 14);
+		add(lblExamploexemplocom);
+		
+		JLabel label_9 = new JLabel("exemplo@exemplo.com");
+		label_9.setBounds(781, 501, 217, 14);
+		add(label_9);
 		
 		
+		
+	}
+	
+	public String testeDeficiente(){
+		
+		if(radioBotaoSim.isSelected()){
+			
+				return "Sim";		
+		}else{
+			
+				return "Não";
+		}
 	}
 }

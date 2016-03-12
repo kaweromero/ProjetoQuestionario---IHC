@@ -5,6 +5,9 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
+
+import funcoesXML.LerXML;
+
 import javax.swing.border.BevelBorder;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -15,17 +18,20 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 public class TelaQuestio2 extends JPanel {
-	private JTextField textFieldCEP;
-	private JTextField textFieldRua;
-	private JTextField textFieldBairro;
-	private JTextField textField;
-	private JTextField textField_1;
+	public JTextField textFieldCEP;
+	public JTextField textFieldRua;
+	public JTextField textFieldBairro;
+	public JTextField textFieldCidade;
+	public JTextField textFieldComplemento;
+	public JComboBox boxEstados;
+	public LerXML arquivoXML;
 
 	/**
 	 * Create the panel.
 	 */
-	public TelaQuestio2() {
-
+	public TelaQuestio2(LerXML arquiXML) {
+		
+		this.arquivoXML = arquiXML;
 		setBounds(100, 100, 1000, 700);
 		setLayout(null);
 		
@@ -54,7 +60,7 @@ public class TelaQuestio2 extends JPanel {
 		panel_1.add(label);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(153, 255, 102));
+		panel_2.setBackground(new Color(255, 255, 153));
 		panel_2.setLayout(null);
 		panel_2.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panel_2.setBounds(449, 11, 98, 58);
@@ -99,41 +105,81 @@ public class TelaQuestio2 extends JPanel {
 		
 		textFieldRua = new JTextField();
 		textFieldRua.setColumns(10);
-		textFieldRua.setBounds(500, 198, 264, 20);
+		textFieldRua.setBounds(500, 198, 280, 20);
 		add(textFieldRua);
 		
 		JLabel lblNewLabel_1 = new JLabel("Bairro");
-		lblNewLabel_1.setBounds(445, 251, 54, 14);
+		lblNewLabel_1.setBounds(454, 301, 54, 14);
 		add(lblNewLabel_1);
 		
 		textFieldBairro = new JTextField();
-		textFieldBairro.setBounds(500, 248, 86, 20);
+		textFieldBairro.setBounds(500, 298, 188, 20);
 		add(textFieldBairro);
 		textFieldBairro.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Cidade");
-		lblNewLabel_2.setBounds(445, 302, 46, 14);
+		lblNewLabel_2.setBounds(450, 351, 46, 14);
 		add(lblNewLabel_2);
 		
-		textField = new JTextField();
-		textField.setBounds(500, 298, 109, 20);
-		add(textField);
-		textField.setColumns(10);
+		textFieldCidade = new JTextField();
+		textFieldCidade.setBounds(500, 348, 188, 20);
+		add(textFieldCidade);
+		textFieldCidade.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Estado");
-		lblNewLabel_3.setBounds(445, 351, 46, 14);
+		lblNewLabel_3.setBounds(450, 401, 46, 14);
 		add(lblNewLabel_3);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(500, 348, 86, 20);
-		add(textField_1);
-		textField_1.setColumns(10);
+		boxEstados = new JComboBox();
+		boxEstados.setModel(new DefaultComboBoxModel(new String[] {"Acre (AC)", "Alagoas (AL)", "Amap\u00E1 (AP)", "Amazonas (AM)", "Bahia (BA)", "Cear\u00E1 (CE)", "Distrito Federal (DF)", "Esp\u00EDrito Santo (ES)", "Goi\u00E1s (GO)", "Maranh\u00E3o (MA)", "Mato Grosso (MT)", "Mato Grosso do Sul (MS)", "Minas Gerais (MG)", "Par\u00E1 (PA) ", "Para\u00EDba (PB)", "Paran\u00E1 (PR)", "Pernambuco (PE)", "Piau\u00ED (PI)", "Rio de Janeiro (RJ)", "Rio Grande do Norte (RN)", "Rio Grande do Sul (RS)", "Rond\u00F4nia (RO)", "Roraima (RR)", "Santa Catarina (SC)", "S\u00E3o Paulo (SP)", "Sergipe (SE)", "Tocantins (TO)"}));
+		boxEstados.setToolTipText("");
+		boxEstados.setBounds(500, 398, 179, 20);
+		add(boxEstados);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Acre (AC)", "Alagoas (AL)", "Amap\u00E1 (AP)", "Amazonas (AM)", "Bahia (BA)", "Cear\u00E1 (CE)", "Distrito Federal (DF)", "Esp\u00EDrito Santo (ES)", "Goi\u00E1s (GO)", "Maranh\u00E3o (MA)", "Mato Grosso (MT)", "Mato Grosso do Sul (MS)", "Minas Gerais (MG)", "Par\u00E1 (PA) ", "Para\u00EDba (PB)", "Paran\u00E1 (PR)", "Pernambuco (PE)", "Piau\u00ED (PI)", "Rio de Janeiro (RJ)", "Rio Grande do Norte (RN)", "Rio Grande do Sul (RS)", "Rond\u00F4nia (RO)", "Roraima (RR)", "Santa Catarina (SC)", "S\u00E3o Paulo (SP)", "Sergipe (SE)", "Tocantins (TO)"}));
-		comboBox.setToolTipText("");
-		comboBox.setBounds(648, 348, 179, 20);
-		add(comboBox);
+		
+		JLabel label_4 = new JLabel("*");
+		label_4.setForeground(Color.RED);
+		label_4.setFont(new Font("Tahoma", Font.BOLD, 14));
+		label_4.setBounds(450, 151, 9, 14);
+		add(label_4);
+		
+		JLabel label_5 = new JLabel("*");
+		label_5.setForeground(Color.RED);
+		label_5.setFont(new Font("Tahoma", Font.BOLD, 14));
+		label_5.setBounds(450, 201, 9, 14);
+		add(label_5);
+		
+		JLabel label_6 = new JLabel("*");
+		label_6.setForeground(Color.RED);
+		label_6.setFont(new Font("Tahoma", Font.BOLD, 14));
+		label_6.setBounds(443, 299, 9, 14);
+		add(label_6);
+		
+		JLabel label_7 = new JLabel("*");
+		label_7.setForeground(Color.RED);
+		label_7.setFont(new Font("Tahoma", Font.BOLD, 14));
+		label_7.setBounds(440, 349, 9, 14);
+		add(label_7);
+		
+		JLabel label_8 = new JLabel("*");
+		label_8.setForeground(Color.RED);
+		label_8.setFont(new Font("Tahoma", Font.BOLD, 14));
+		label_8.setBounds(435, 399, 9, 14);
+		add(label_8);
+		
+		JLabel lblComplemento = new JLabel("Complemento");
+		lblComplemento.setBounds(410, 250, 89, 14);
+		add(lblComplemento);
+		
+		textFieldComplemento = new JTextField();
+		textFieldComplemento.setBounds(500, 248, 280, 20);
+		add(textFieldComplemento);
+		textFieldComplemento.setColumns(10);
+		textFieldComplemento.setText(" ");
+		
+		JLabel lblSomenteNmerosEx = new JLabel("Somente n\u00FAmeros Ex:58400000");
+		lblSomenteNmerosEx.setBounds(802, 151, 188, 14);
+		add(lblSomenteNmerosEx);
 		
 	}
 }

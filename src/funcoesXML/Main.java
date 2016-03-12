@@ -14,17 +14,17 @@ public class Main {
 		
 		XStream xstream = new XStream(new DomDriver());
 		
-		Pessoa pessoa = new Pessoa();
-		pessoa.setNome("kawe");
-		pessoa.setLogin("kaweromero");
-		pessoa.setTelefone("83987654321");
-		pessoa.setEndereço("Rua HUE da silva");
+		//Estagiario pessoa = new Estagiario();
+		//pessoa.setNome("kawe");
+		//pessoa.setLogin("kaweromero");
+		//pessoa.setTelefone("83987654321");
+		//pessoa.setEndereço("Rua HUE da silva");
 		
 		//System.out.println(xstream.toXML(pessoa));
 		//String xml = xstream.toXML(pessoa);
 		
 		LerXML lergravar = new LerXML();
-		lergravar.gravarArquivo(pessoa, xstream);
+		//lergravar.gravarArquivo(pessoa, xstream);
 		//lergravar.lerXML();
 		
 		

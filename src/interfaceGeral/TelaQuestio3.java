@@ -11,18 +11,30 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
 
-public class TelaQuestio3 extends JPanel {
+import funcoesXML.LerXML;
 
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.border.CompoundBorder;
+
+public class TelaQuestio3 extends JPanel {
+	public JTextField textFieldInstituicao;
+	public JTextField textFieldCurso;
+	public JTextField textFieldTurno;
+	public JTextField textFieldLocalDiferente;
+	public JTextPane textPaneCurriculo;
+	public LerXML arquivoXML;
 	/**
 	 * Create the panel.
 	 */
-	public TelaQuestio3() {
+	public TelaQuestio3(LerXML arquiXML) {
 
+		this.arquivoXML = arquiXML;
 		setBounds(100, 100, 1000, 700);
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("!!!!!!!!");
-		lblNewLabel.setBounds(204, 137, 46, 14);
+		JLabel lblNewLabel = new JLabel("Curso");
+		lblNewLabel.setBounds(454, 201, 46, 14);
 		add(lblNewLabel);
 		
 		JPanel panel = new JPanel();
@@ -59,7 +71,7 @@ public class TelaQuestio3 extends JPanel {
 		panel_2.add(label_1);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(153, 255, 102));
+		panel_3.setBackground(new Color(255, 255, 153));
 		panel_3.setLayout(null);
 		panel_3.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panel_3.setBounds(830, 11, 98, 58);
@@ -71,13 +83,93 @@ public class TelaQuestio3 extends JPanel {
 		label_2.setBounds(10, 11, 78, 36);
 		panel_3.add(label_2);
 		
-		JLabel lblRua = new JLabel("Rua");
-		lblRua.setBounds(278, 210, 46, 14);
-		add(lblRua);
+		textFieldInstituicao = new JTextField();
+		textFieldInstituicao.setColumns(10);
+		textFieldInstituicao.setBounds(500, 148, 97, 20);
+		add(textFieldInstituicao);
+		
+		JLabel lblDadosEscolares = new JLabel("Dados Escolares");
+		lblDadosEscolares.setFont(new Font("Georgia", Font.BOLD, 20));
+		lblDadosEscolares.setBounds(402, 91, 264, 15);
+		add(lblDadosEscolares);
+		
+		JLabel lblNewLabel_1 = new JLabel("Turno do curso");
+		lblNewLabel_1.setBounds(402, 248, 126, 14);
+		add(lblNewLabel_1);
+		
+		JLabel lblLocaisParaEstgio = new JLabel("Local para Est\u00E1gio");
+		lblLocaisParaEstgio.setBounds(382, 301, 126, 14);
+		add(lblLocaisParaEstgio);
+		
+		textFieldCurso = new JTextField();
+		textFieldCurso.setColumns(10);
+		textFieldCurso.setBounds(500, 198, 166, 20);
+		add(textFieldCurso);
+		
+		textFieldTurno = new JTextField();
+		textFieldTurno.setColumns(10);
+		textFieldTurno.setBounds(500, 248, 104, 20);
+		add(textFieldTurno);
+		
+		JLabel lblNewLabel_2 = new JLabel("Fale um pouco sobre voc\u00EA");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_2.setBounds(328, 407, 249, 14);
+		add(lblNewLabel_2);
+		
+		textPaneCurriculo = new JTextPane();
+		textPaneCurriculo.setBorder(new CompoundBorder());
+		textPaneCurriculo.setBounds(307, 432, 382, 175);
+		add(textPaneCurriculo);
+		
+		textFieldLocalDiferente = new JTextField();
+		textFieldLocalDiferente.setColumns(10);
+		textFieldLocalDiferente.setBounds(500, 298, 195, 20);
+		textFieldLocalDiferente.setText(" ");
+		add(textFieldLocalDiferente);
+		
+		JLabel lblNewLabel_3 = new JLabel("Institui\u00E7\u00E3o de ensino");
+		lblNewLabel_3.setBounds(374, 151, 140, 14);
+		add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Somente a sigla Ex: UEPB");
+		lblNewLabel_4.setBounds(728, 151, 166, 14);
+		add(lblNewLabel_4);
+		
+		JLabel label_3 = new JLabel("Campos com asterisco (*) s\u00E3o obrigat\u00F3rios");
+		label_3.setFont(new Font("Tahoma", Font.BOLD, 12));
+		label_3.setBounds(20, 150, 286, 14);
+		add(label_3);
+		
+		JLabel label_4 = new JLabel("*");
+		label_4.setForeground(Color.RED);
+		label_4.setFont(new Font("Tahoma", Font.BOLD, 14));
+		label_4.setBounds(363, 151, 9, 14);
+		add(label_4);
+		
+		JLabel label_5 = new JLabel("*");
+		label_5.setForeground(Color.RED);
+		label_5.setFont(new Font("Tahoma", Font.BOLD, 14));
+		label_5.setBounds(440, 201, 9, 14);
+		add(label_5);
+		
+		JLabel label_6 = new JLabel("*");
+		label_6.setForeground(Color.RED);
+		label_6.setFont(new Font("Tahoma", Font.BOLD, 14));
+		label_6.setBounds(389, 248, 9, 14);
+		add(label_6);
+		
+		JLabel label_7 = new JLabel("*");
+		label_7.setForeground(Color.RED);
+		label_7.setFont(new Font("Tahoma", Font.BOLD, 14));
+		label_7.setBounds(317, 406, 9, 14);
+		add(label_7);
+		
+		JLabel lblOutraCidadeQue = new JLabel("Outra cidade que voc\u00EA pode estagiar");
+		lblOutraCidadeQue.setBounds(728, 301, 226, 14);
+		add(lblOutraCidadeQue);
 		
 		
 		
 		
 	}
-
 }
