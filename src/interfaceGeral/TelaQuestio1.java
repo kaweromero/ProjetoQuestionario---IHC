@@ -22,6 +22,8 @@ import funcoesXML.LerXML;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class TelaQuestio1 extends JPanel {
 	public JTextField textFieldNomeCompleto;
@@ -37,7 +39,12 @@ public class TelaQuestio1 extends JPanel {
 	
 	public LerXML arquivoXML;
 	public ButtonGroup grupo1 = new ButtonGroup();
-
+	int contagemNome=35;
+	int vigiaNome=0;
+	int contagemCPF=11;
+	int vigiaCPF=0;
+	int contagemDataNasci=8;
+	int vigiaDataNasci=0;
 	/**
 	 * Create the panel.
 	 */
@@ -59,17 +66,137 @@ public class TelaQuestio1 extends JPanel {
 		labelData.setBounds(395, 251, 98, 14);
 		add(labelData);
 		
+		JLabel labelContagemNome = new JLabel("35");
+		labelContagemNome.setForeground(new Color(255, 102, 0));
+		labelContagemNome.setBounds(796, 151, 46, 14);
+		add(labelContagemNome);
+		
+		JLabel labelContagemCPF = new JLabel("11");
+		labelContagemCPF.setForeground(new Color(255, 102, 0));
+		labelContagemCPF.setBounds(616, 201, 46, 14);
+		add(labelContagemCPF);
+		
+		JLabel labelContagemDataNasci = new JLabel("8");
+		labelContagemDataNasci.setForeground(new Color(255, 102, 0));
+		labelContagemDataNasci.setBounds(616, 251, 46, 14);
+		add(labelContagemDataNasci);
+		
+		
 		textFieldNomeCompleto = new JTextField();
+		textFieldNomeCompleto.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+				if(textFieldNomeCompleto.getText().length()<35){	
+					
+					if(vigiaNome == textFieldNomeCompleto.getText().length()){
+						vigiaNome++;
+						
+						if(vigiaNome>0){
+							
+							contagemNome--;
+						}
+						
+					}else{
+						if(vigiaNome>0 && contagemNome>0 || vigiaNome==35 && contagemNome==0){
+							
+						vigiaNome--;
+						contagemNome++;
+						}
+					}		
+					System.out.println(contagemNome);
+					System.out.println(textFieldNomeCompleto.getText().length());
+					System.out.println(vigiaNome);
+					System.out.println("******");
+					labelContagemNome.setText(Integer.toString(contagemNome));
+				}
+				 if(textFieldNomeCompleto.getText().length()>=35) {
+					// System.out.println("HUE");
+					 
+			            getToolkit().beep();
+			            e.consume();
+				 }
+			}
+		});
 		textFieldNomeCompleto.setBounds(500, 148, 286, 20);
 		add(textFieldNomeCompleto);
 		textFieldNomeCompleto.setColumns(10);
 		
 		textFieldCPF = new JTextField();
+		textFieldCPF.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+				if(textFieldCPF.getText().length()<11){	
+					
+					if(vigiaCPF == textFieldCPF.getText().length()){
+						vigiaCPF++;					
+						if(vigiaCPF>0){
+							contagemCPF--;
+						}
+						
+					}else{
+						if(vigiaCPF>0 && contagemCPF>0 || vigiaCPF==11 && contagemCPF==0){
+							vigiaCPF--;
+							contagemCPF++;
+						}
+					}
+						
+					//System.out.println(contagemNome);
+					//System.out.println(textFieldNomeCompleto.getText().length());
+					//System.out.println(vigiaNome);
+					//System.out.println("******");
+					labelContagemCPF.setText(Integer.toString(contagemCPF));
+				}
+				 if(textFieldCPF.getText().length()>=11) {
+					// System.out.println("HUE");
+					 
+			            getToolkit().beep();
+			            e.consume();
+				 }
+			}
+		});
 		textFieldCPF.setBounds(500, 198, 106, 20);
 		add(textFieldCPF);
 		textFieldCPF.setColumns(10);
 		
 		textFieldDataNascimento = new JTextField();
+		textFieldDataNascimento.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+				if(textFieldDataNascimento.getText().length()<8){	
+					
+					if(vigiaDataNasci == textFieldDataNascimento.getText().length()){
+						vigiaDataNasci++;	
+						
+						if(vigiaDataNasci>0){
+							contagemDataNasci--;
+						}
+					}else{
+						
+						if(vigiaDataNasci>0 && contagemDataNasci>0 || vigiaDataNasci==8 && contagemDataNasci==0){		
+							vigiaDataNasci--;
+							contagemDataNasci++;
+						}
+					}
+						
+					System.out.println(contagemDataNasci);
+					System.out.println(textFieldIdade.getText().length());
+					System.out.println(vigiaDataNasci);
+					System.out.println("******");
+					labelContagemDataNasci.setText(Integer.toString(contagemDataNasci));
+				}
+				 if(textFieldDataNascimento.getText().length()>=8) {
+					// System.out.println("HUE");
+					 
+			            getToolkit().beep();
+			            e.consume();
+				 }
+					
+			}
+		});
+		
 		textFieldDataNascimento.setBounds(500, 248, 86, 20);
 		add(textFieldDataNascimento);
 		textFieldDataNascimento.setColumns(10);
@@ -175,7 +302,7 @@ public class TelaQuestio1 extends JPanel {
 		textFieldConfirmarEmail.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Somente n\u00FAmeros   Ex: 09011122299");
-		lblNewLabel_4.setBounds(635, 201, 216, 14);
+		lblNewLabel_4.setBounds(661, 201, 216, 14);
 		add(lblNewLabel_4);
 		
 		JLabel label = new JLabel("*");
@@ -242,7 +369,7 @@ public class TelaQuestio1 extends JPanel {
 		add(label_7);
 		
 		JLabel lblSomenteNmerosEx = new JLabel("Somente n\u00FAmeros   Ex: 01021900");
-		lblSomenteNmerosEx.setBounds(635, 251, 194, 14);
+		lblSomenteNmerosEx.setBounds(661, 251, 216, 14);
 		add(lblSomenteNmerosEx);
 		
 		JLabel lblNewLabel_7 = new JLabel("Dados Pessoais");
@@ -266,6 +393,16 @@ public class TelaQuestio1 extends JPanel {
 		label_9.setBounds(781, 501, 217, 14);
 		add(label_9);
 		
+		JLabel lblMaxLetras = new JLabel("Max. 35 letras");
+		lblMaxLetras.setBounds(852, 151, 98, 14);
+		add(lblMaxLetras);
+		
+	
+		
+		
+		
+	
+		
 		
 		
 	}
@@ -274,10 +411,16 @@ public class TelaQuestio1 extends JPanel {
 		
 		if(radioBotaoSim.isSelected()){
 			
-				return "Sim";		
-		}else{
+			return "Sim";	
 			
+		}else{
+			if(radioBotaoNao.isSelected()){
+				
 				return "Não";
+				
+			}
 		}
+		
+		return "";
 	}
 }

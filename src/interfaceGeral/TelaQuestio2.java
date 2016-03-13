@@ -16,6 +16,8 @@ import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class TelaQuestio2 extends JPanel {
 	public JTextField textFieldCEP;
@@ -25,7 +27,8 @@ public class TelaQuestio2 extends JPanel {
 	public JTextField textFieldComplemento;
 	public JComboBox boxEstados;
 	public LerXML arquivoXML;
-
+	int vigiaCEP = 0;
+	int contagemCEP=8;
 	/**
 	 * Create the panel.
 	 */
@@ -84,8 +87,8 @@ public class TelaQuestio2 extends JPanel {
 		label_2.setBounds(10, 11, 78, 36);
 		panel_3.add(label_2);
 		
-		JLabel lblRua = new JLabel("Rua");
-		lblRua.setBounds(462, 201, 46, 14);
+		JLabel lblRua = new JLabel("Logradouro");
+		lblRua.setBounds(421, 201, 46, 14);
 		add(lblRua);
 		
 		JLabel lblEndereo = new JLabel("Dados de endere\u00E7o");
@@ -98,7 +101,49 @@ public class TelaQuestio2 extends JPanel {
 		label_3.setBounds(20, 150, 286, 14);
 		add(label_3);
 		
+		JLabel labelContagemCEP = new JLabel("8");
+		labelContagemCEP.setForeground(new Color(255, 0, 0));
+		labelContagemCEP.setBounds(599, 151, 46, 14);
+		add(labelContagemCEP);
+		
+		
 		textFieldCEP = new JTextField();
+		textFieldCEP.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+				if(textFieldCEP.getText().length()<8){	
+					
+					if(vigiaCEP == textFieldCEP.getText().length()){
+						vigiaCEP++;	
+						
+						if(vigiaCEP>0){
+							contagemCEP--;
+						}
+						System.out.println("Condi1");
+					}else{
+						
+						if(vigiaCEP>0 && contagemCEP>0 || vigiaCEP==8 && contagemCEP==0){
+							System.out.println("Condi2");
+							vigiaCEP--;
+							contagemCEP++;
+						}
+					}
+						
+					System.out.println(contagemCEP);
+					System.out.println(textFieldCEP.getText().length());
+					System.out.println(vigiaCEP);
+					System.out.println("******");
+					labelContagemCEP.setText(Integer.toString(contagemCEP));
+				}
+				 if(textFieldCEP.getText().length()>=8) {
+					// System.out.println("HUE");
+					 
+			            getToolkit().beep();
+			            e.consume();
+				 }
+			}
+		});
 		textFieldCEP.setColumns(10);
 		textFieldCEP.setBounds(500, 148, 86, 20);
 		add(textFieldCEP);
@@ -146,7 +191,7 @@ public class TelaQuestio2 extends JPanel {
 		JLabel label_5 = new JLabel("*");
 		label_5.setForeground(Color.RED);
 		label_5.setFont(new Font("Tahoma", Font.BOLD, 14));
-		label_5.setBounds(450, 201, 9, 14);
+		label_5.setBounds(402, 199, 9, 14);
 		add(label_5);
 		
 		JLabel label_6 = new JLabel("*");
@@ -180,6 +225,7 @@ public class TelaQuestio2 extends JPanel {
 		JLabel lblSomenteNmerosEx = new JLabel("Somente n\u00FAmeros Ex:58400000");
 		lblSomenteNmerosEx.setBounds(802, 151, 188, 14);
 		add(lblSomenteNmerosEx);
+		
 		
 	}
 }

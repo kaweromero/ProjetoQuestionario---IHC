@@ -18,9 +18,12 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
 
 public class TelaPrincipals extends JFrame {
 
@@ -30,12 +33,12 @@ public class TelaPrincipals extends JFrame {
 	XStream xstream = new XStream(new DomDriver());
 	LerXML lergravar = new LerXML();
 	Estagiario estagiario = new Estagiario();
-	private TelaQuestio1 tela1 = new TelaQuestio1(objeXML);
-	private TelaQuestio2 tela2 = new TelaQuestio2(objeXML);
-	private TelaQuestio3 tela3 = new TelaQuestio3(objeXML);
 	boolean testeTela1 = false;
 	boolean testeTela2 = false;
 	boolean testeTela3 = false;
+	private TelaQuestio1 tela1 = new TelaQuestio1(objeXML);
+	private TelaQuestio2 tela2 = new TelaQuestio2(objeXML);
+	private TelaQuestio3 tela3 = new TelaQuestio3(objeXML);
 	/**
 	 * Launch the application.
 	 */
@@ -56,17 +59,18 @@ public class TelaPrincipals extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaPrincipals() {
+		
 		super("Super Cadastro de Estágio! @ByKawêRomero");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setBounds(100, 100, 1000, 700);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(176, 224, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
-		//add(tela1);
-		//tela1.setVisible(false);
+		
 		
 		JButton botaoContinuar = new JButton("Continuar");
 		botaoContinuar.setBorder(null);
@@ -74,7 +78,7 @@ public class TelaPrincipals extends JFrame {
 		botaoContinuar.setBackground(new Color(240, 230, 140));
 		botaoContinuar.setFont(new Font("Georgia", Font.BOLD, 12));
 		botaoContinuar.setBounds(792, 624, 106, 36);
-		add(botaoContinuar);
+		getContentPane().add(botaoContinuar);
 		botaoContinuar.setVisible(false);
 		
 		JButton botaoVoltar = new JButton("Voltar");
@@ -83,7 +87,7 @@ public class TelaPrincipals extends JFrame {
 		botaoVoltar.setBorder(null);
 		botaoVoltar.setBackground(new Color(240, 230, 140));
 		botaoVoltar.setBounds(635, 624, 106, 36);
-		add(botaoVoltar);
+		getContentPane().add(botaoVoltar);
 		botaoVoltar.setVisible(false);
 			
 		
@@ -92,50 +96,157 @@ public class TelaPrincipals extends JFrame {
 				
 				
 				if(testeTela1 == true && testeTela2 == false && testeTela3 == false){
-					//Tela1 para Tela 2
-					tela1.setVisible(false);
-					setContentPane(tela2);
-					tela2.setVisible(true);
 					
-					tela2.add(botaoContinuar);
-					tela2.add(botaoVoltar);
-					botaoContinuar.setVisible(true);
-					botaoVoltar.setVisible(true);
-					testeTela2 = true;
-					testeTela1 = false;
-					validate();
+					//Tela1 para Tela 2						
+					if(tela1.textFieldNomeCompleto.getText().length()!=0){
+						
+						if(tela1.textFieldCPF.getText().length()==11){
+							
+							if(tela1.textFieldDataNascimento.getText().length()==8){
+								
+								if(tela1.textFieldIdade.getText().length()!=0){
+									
+									if(tela1.textFieldTelefone.getText().length()!=0){
+										
+										if(tela1.testeDeficiente().equals("Sim") || tela1.testeDeficiente().equals("Não")){
+											
+											if(tela1.textFieldEmail.getText().length()!=0){
+												
+												
+												if(tela1.textFieldEmail.getText().equals(tela1.textFieldConfirmarEmail.getText())){
+													
+													tela1.setVisible(false);
+													setContentPane(tela2);
+													tela2.setVisible(true);
+												
+													tela2.add(botaoContinuar);
+													tela2.add(botaoVoltar);
+													botaoContinuar.setVisible(true);
+													botaoVoltar.setVisible(true);
+													testeTela2 = true;
+													testeTela1 = false;
+													validate();	
+													
+												}else{
+													JOptionPane.showMessageDialog(null, "Email de confirmação não bate com o email colocado!");
+												}
+														
+											}else{
+												JOptionPane.showMessageDialog(null, "Preencha o campo 'Email'");
+											}
+										}else{
+											JOptionPane.showMessageDialog(null, "Marque a opção de 'Deficiência");
+										}
+										
+									}else{
+										JOptionPane.showMessageDialog(null, "Preencha o campo 'Telefone'");
+									}
+									
+								}else{
+									JOptionPane.showMessageDialog(null, "Preencha o campo 'Idade'");
+								}
+								
+								
+							}else{
+								JOptionPane.showMessageDialog(null, "Preencha o campo 'Data Nascimento' corretamente!");
+							}
+							
+						}else{
+							JOptionPane.showMessageDialog(null, "Preencha o campo 'CPF' corretamente!");
+						}
+						
+					}else{
+						JOptionPane.showMessageDialog(null, "Preencha o campo 'Nome'!");
+					}
+					
+			
 				}else{
 					
 					if(testeTela2 == true && testeTela3 == false && testeTela1 == false){
 					
-						//Tela2 para Tela 3
-						tela2.setVisible(false);
-						setContentPane(tela3);
-						tela3.setVisible(true);
-					
-						tela3.add(botaoContinuar);
-						tela3.add(botaoVoltar);
-						botaoContinuar.setVisible(true);
-						botaoVoltar.setVisible(true);
-						testeTela3 = true;
-						testeTela2 = false;
-						validate();
+						
+						//Tela2 para Tela 3//					
+						if(tela2.textFieldCEP.getText().length()==8){					
+							
+							if(tela2.textFieldRua.getText().length()!=0){
+								
+								if(tela2.textFieldBairro.getText().length()!=0){
+									
+									if(tela2.textFieldCidade.getText().length()!=0){
+										
+										
+										tela2.setVisible(false);
+										setContentPane(tela3);
+										tela3.setVisible(true);
+									
+										tela3.add(botaoContinuar);
+										tela3.add(botaoVoltar);
+										botaoContinuar.setVisible(true);
+										botaoVoltar.setVisible(true);
+										testeTela3 = true;
+										testeTela2 = false;
+										validate();
+										
+										
+									}else{
+										JOptionPane.showMessageDialog(null, "Preencha o campo 'Cidade'!");
+									}	
+																		
+								}else{
+									JOptionPane.showMessageDialog(null, "Preencha o campo 'Bairro'!");
+								}						
+								
+							}else{
+								JOptionPane.showMessageDialog(null, "Preencha o campo 'Logradouro'!");
+							}
+														
+						}else{
+							JOptionPane.showMessageDialog(null, "Preencha o campo 'Nome'!");
+						}
+								
+						
 					}else{
+						
 						if(testeTela3 == true && testeTela2 == false && testeTela1 == false){
 							
-							//System.out.println(tela1.textFieldCPF.getText());
-							//System.out.println(tela2.boxEstados.getSelectedItem());
-							
-							//Cadastrar estagiario
-							try{
-								cadastrar(estagiario);
-								lergravar.gravarArquivo(estagiario, xstream);
-								JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-								System.exit(0);
-							}catch(Exception e){
+						
+							if(tela3.textFieldInstituicao.getText().length()!=0){
 								
-								JOptionPane.showMessageDialog(null, "Erro ao cadastrar, contate o administrador!");
-							}
+								if(tela3.textFieldCurso.getText().length()!=0){
+									
+									if(tela3.textFieldTurno.getText().length()!=0){
+										
+										if(tela3.textPaneCurriculo.getText().length()!=0){
+											
+											try{
+												//Cadastrar estagiario
+												cadastrar(estagiario);
+												lergravar.gravarArquivo(estagiario, xstream);
+												JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+												System.exit(0);
+												
+											}catch(Exception e){
+												
+												JOptionPane.showMessageDialog(null, "Erro ao cadastrar, contate o administrador!");
+											}
+											
+										}else{
+											
+											JOptionPane.showMessageDialog(null, "Preencha o campo 'Nome'!");
+										}
+									}else{
+										
+										JOptionPane.showMessageDialog(null, "Preencha o campo 'Nome'!");
+									}
+								}else{
+									
+									JOptionPane.showMessageDialog(null, "Preencha o campo 'Curso'!");
+								}
+							}else{
+								
+								JOptionPane.showMessageDialog(null, "Preencha o campo 'Instituição de ensino'!");
+							}					
+							
 						}
 					}
 				}				
@@ -193,9 +304,46 @@ public class TelaPrincipals extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Come\u00E7ar!");
+		btnNewButton.setBackground(new Color(255, 255, 153));
+		btnNewButton.setFont(new Font("Georgia", Font.BOLD, 12));
 		btnNewButton.setBounds(453, 566, 115, 39);
 		contentPane.add(btnNewButton);
+		
+		JLabel lblNewLabel_1 = new JLabel("Cadastro de alunos para concorrer a uma vaga de est\u00E1gio.");
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 17));
+		lblNewLabel_1.setBackground(new Color(0, 0, 0));
+		lblNewLabel_1.setBounds(258, 469, 531, 25);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Projeto da disciplina Projeto Interface Homem-Computador");
+		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		lblNewLabel_2.setBounds(63, 199, 567, 25);
+		contentPane.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Analise da usabilidade do cadastro usando a avalia\u00E7\u00E3o de conformidade seguindo a ISO 9241-17 ");
+		lblNewLabel_3.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		lblNewLabel_3.setBounds(63, 256, 766, 69);
+		contentPane.add(lblNewLabel_3);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panel.setBackground(Color.decode("#F4F4F4"));
+		panel.setBounds(40, 174, 868, 337);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblPorKawRomero = new JLabel("Por Kaw\u00EA Romero");
+		lblPorKawRomero.setFont(new Font("Times New Roman", Font.BOLD, 16));
+		lblPorKawRomero.setBounds(650, 240, 165, 36);
+		panel.add(lblPorKawRomero);
+		
+		//JLabel spritesair = new JLabel(new ImageIcon("imagem/spritesair.png"));
+		JLabel lblNewLabel_4 = new JLabel(new ImageIcon("imagem/uepb.png"));
+		lblNewLabel_4.setBounds(41, 11, 150, 150);
+		
+		contentPane.add(lblNewLabel_4);
 		//setFocusable(true);
+		
 		setLocationRelativeTo(null);
 		
 		//*******************
@@ -249,15 +397,21 @@ public class TelaPrincipals extends JFrame {
 		estagiario.setCurriculo(tela3.textPaneCurriculo.getText());
 		
 		
+	}
+	
+	public boolean testeCamposImportantes(){
 		
 		
 		
+		if(tela1.textFieldEmail.getText() != tela1.textFieldConfirmarEmail.getText()){
+			
+			JOptionPane.showMessageDialog(null, "O email confirmando não bate com o email digitado");
+			
+			return false;
+		}
 		
 		
-		
-		
-		
-		
+		return false;
 		
 	}
 }
