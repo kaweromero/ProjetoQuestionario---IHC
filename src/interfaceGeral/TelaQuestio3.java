@@ -16,13 +16,14 @@ import funcoesXML.LerXML;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.border.CompoundBorder;
+import java.awt.TextArea;
 
 public class TelaQuestio3 extends JPanel {
 	public JTextField textFieldInstituicao;
 	public JTextField textFieldCurso;
 	public JTextField textFieldTurno;
 	public JTextField textFieldLocalDiferente;
-	public JTextPane textPaneCurriculo;
+	public TextArea textPaneCurriculo;
 	public LerXML arquivoXML;
 	/**
 	 * Create the panel.
@@ -117,11 +118,6 @@ public class TelaQuestio3 extends JPanel {
 		lblNewLabel_2.setBounds(328, 407, 249, 14);
 		add(lblNewLabel_2);
 		
-		textPaneCurriculo = new JTextPane();
-		textPaneCurriculo.setBorder(new CompoundBorder());
-		textPaneCurriculo.setBounds(307, 432, 382, 175);
-		add(textPaneCurriculo);
-		
 		textFieldLocalDiferente = new JTextField();
 		textFieldLocalDiferente.setColumns(10);
 		textFieldLocalDiferente.setBounds(500, 298, 195, 20);
@@ -168,6 +164,10 @@ public class TelaQuestio3 extends JPanel {
 		JLabel lblOutraCidadeQue = new JLabel("Outra cidade que voc\u00EA pode estagiar");
 		lblOutraCidadeQue.setBounds(728, 301, 226, 14);
 		add(lblOutraCidadeQue);
+		
+		TextArea textPaneCurriculo = new TextArea("", 6, 30, TextArea.SCROLLBARS_VERTICAL_ONLY);
+		textPaneCurriculo.setBounds(274, 439, 442, 160);
+		add(textPaneCurriculo);
 		
 		
 		

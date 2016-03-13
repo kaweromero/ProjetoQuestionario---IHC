@@ -109,12 +109,12 @@ public class TelaQuestio1 extends JPanel {
 						contagemNome++;
 						}
 					}		
-					System.out.println(contagemNome);
-					System.out.println(textFieldNomeCompleto.getText().length());
-					System.out.println(vigiaNome);
-					System.out.println("******");
+					
+					
 					labelContagemNome.setText(Integer.toString(contagemNome));
 				}
+				
+				
 				 if(textFieldNomeCompleto.getText().length()>=35) {
 					// System.out.println("HUE");
 					 
@@ -193,10 +193,7 @@ public class TelaQuestio1 extends JPanel {
 						}
 					}
 						
-					System.out.println(contagemDataNasci);
-					System.out.println(textFieldIdade.getText().length());
-					System.out.println(vigiaDataNasci);
-					System.out.println("******");
+					
 					labelContagemDataNasci.setText(Integer.toString(contagemDataNasci));
 				}
 				 if(textFieldDataNascimento.getText().length()>=8) {

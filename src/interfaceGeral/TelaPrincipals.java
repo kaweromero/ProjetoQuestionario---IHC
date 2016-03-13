@@ -95,10 +95,8 @@ public class TelaPrincipals extends JFrame {
 		
 		botaoContinuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
-				if(testeTela1 == true && testeTela2 == false && testeTela3 == false){
 					
+				if(testeTela1 == true && testeTela2 == false && testeTela3 == false){	
 					//Tela1 para Tela 2						
 					if(tela1.textFieldNomeCompleto.getText().length()!=0){
 						
@@ -147,8 +145,7 @@ public class TelaPrincipals extends JFrame {
 								}else{
 									JOptionPane.showMessageDialog(null, "Preencha o campo 'Idade'");
 								}
-								
-								
+									
 							}else{
 								JOptionPane.showMessageDialog(null, "Preencha o campo 'Data Nascimento' corretamente!");
 							}
@@ -284,8 +281,7 @@ public class TelaPrincipals extends JFrame {
 						setContentPane(tela2);
 						tela2.setVisible(true);
 						testeTela3 = false;
-						testeTela2 = true;
-						
+						testeTela2 = true;		
 						tela2.add(botaoContinuar);
 						tela2.add(botaoVoltar);
 						botaoContinuar.setVisible(true);
@@ -365,6 +361,7 @@ public class TelaPrincipals extends JFrame {
 				
 				botaoContinuar.setVisible(true);
 				botaoVoltar.setVisible(true);
+				tela1.textFieldNomeCompleto.requestFocusInWindow();
 				validate();
 				
 				
