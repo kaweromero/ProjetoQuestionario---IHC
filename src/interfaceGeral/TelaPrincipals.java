@@ -12,6 +12,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import funcoesXML.Estagiario;
 import funcoesXML.LerXML;
+import funcoesXML.ValidaCPF;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -39,6 +40,7 @@ public class TelaPrincipals extends JFrame {
 	private TelaQuestio1 tela1 = new TelaQuestio1(objeXML);
 	private TelaQuestio2 tela2 = new TelaQuestio2(objeXML);
 	private TelaQuestio3 tela3 = new TelaQuestio3(objeXML);
+	private ValidaCPF valido = new ValidaCPF();
 	/**
 	 * Launch the application.
 	 */
@@ -100,7 +102,7 @@ public class TelaPrincipals extends JFrame {
 					//Tela1 para Tela 2						
 					if(tela1.textFieldNomeCompleto.getText().length()!=0){
 						
-						if(tela1.textFieldCPF.getText().length()==11){
+						if((tela1.textFieldCPF.getText().length()==11) && (valido.isCPF(tela1.textFieldCPF.getText()) == true)){
 							
 							if(tela1.textFieldDataNascimento.getText().length()==8){
 								
@@ -185,6 +187,7 @@ public class TelaPrincipals extends JFrame {
 										botaoVoltar.setVisible(true);
 										testeTela3 = true;
 										testeTela2 = false;
+										botaoContinuar.setText("Concluir!");
 										validate();
 										
 										
@@ -287,6 +290,7 @@ public class TelaPrincipals extends JFrame {
 						tela2.add(botaoVoltar);
 						botaoContinuar.setVisible(true);
 						botaoVoltar.setVisible(true);
+						botaoContinuar.setText("Continuar");
 						validate();
 					}	
 					

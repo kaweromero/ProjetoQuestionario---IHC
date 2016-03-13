@@ -6,6 +6,7 @@ import java.awt.Color;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
 
+import funcoesXML.FormataTexto;
 import funcoesXML.LerXML;
 
 import javax.swing.border.BevelBorder;
@@ -88,7 +89,7 @@ public class TelaQuestio2 extends JPanel {
 		panel_3.add(label_2);
 		
 		JLabel lblRua = new JLabel("Logradouro");
-		lblRua.setBounds(421, 201, 46, 14);
+		lblRua.setBounds(421, 201, 104, 14);
 		add(lblRua);
 		
 		JLabel lblEndereo = new JLabel("Dados de endere\u00E7o");
@@ -108,6 +109,11 @@ public class TelaQuestio2 extends JPanel {
 		
 		
 		textFieldCEP = new JTextField();
+		textFieldCEP.setColumns(10);
+		textFieldCEP.setBounds(500, 148, 86, 20);
+		textFieldCEP.setDocument(new FormataTexto(8, 'D'));
+		add(textFieldCEP);
+		
 		textFieldCEP.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -144,10 +150,6 @@ public class TelaQuestio2 extends JPanel {
 				 }
 			}
 		});
-		textFieldCEP.setColumns(10);
-		textFieldCEP.setBounds(500, 148, 86, 20);
-		add(textFieldCEP);
-		
 		textFieldRua = new JTextField();
 		textFieldRua.setColumns(10);
 		textFieldRua.setBounds(500, 198, 280, 20);
@@ -213,6 +215,7 @@ public class TelaQuestio2 extends JPanel {
 		add(label_8);
 		
 		JLabel lblComplemento = new JLabel("Complemento");
+		lblComplemento.setForeground(Color.GRAY);
 		lblComplemento.setBounds(410, 250, 89, 14);
 		add(lblComplemento);
 		

@@ -17,6 +17,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.plaf.basic.BasicBorders.RadioButtonBorder;
 
+import funcoesXML.FormataTexto;
 import funcoesXML.LerXML;
 
 import javax.swing.JRadioButton;
@@ -24,6 +25,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaQuestio1 extends JPanel {
 	public JTextField textFieldNomeCompleto;
@@ -83,6 +86,8 @@ public class TelaQuestio1 extends JPanel {
 		
 		
 		textFieldNomeCompleto = new JTextField();
+		
+		
 		textFieldNomeCompleto.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -123,6 +128,11 @@ public class TelaQuestio1 extends JPanel {
 		textFieldNomeCompleto.setColumns(10);
 		
 		textFieldCPF = new JTextField();
+		textFieldCPF.setBounds(500, 198, 106, 20);
+		add(textFieldCPF);
+		textFieldCPF.setDocument(new FormataTexto(11, 'D'));
+		textFieldCPF.setColumns(10);
+		
 		textFieldCPF.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -156,11 +166,13 @@ public class TelaQuestio1 extends JPanel {
 				 }
 			}
 		});
-		textFieldCPF.setBounds(500, 198, 106, 20);
-		add(textFieldCPF);
-		textFieldCPF.setColumns(10);
 		
 		textFieldDataNascimento = new JTextField();
+		textFieldDataNascimento.setDocument(new FormataTexto(8, 'D'));
+		textFieldDataNascimento.setBounds(500, 248, 86, 20);
+		add(textFieldDataNascimento);
+		textFieldDataNascimento.setColumns(10);
+		
 		textFieldDataNascimento.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -197,9 +209,6 @@ public class TelaQuestio1 extends JPanel {
 			}
 		});
 		
-		textFieldDataNascimento.setBounds(500, 248, 86, 20);
-		add(textFieldDataNascimento);
-		textFieldDataNascimento.setColumns(10);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(153, 153, 255));
@@ -253,6 +262,7 @@ public class TelaQuestio1 extends JPanel {
 		
 		textFieldIdade = new JTextField();
 		textFieldIdade.setBounds(500, 298, 51, 20);
+		textFieldIdade.setDocument(new FormataTexto(3, 'D'));
 		add(textFieldIdade);
 		textFieldIdade.setColumns(10);
 		
@@ -287,16 +297,30 @@ public class TelaQuestio1 extends JPanel {
 		
 		textFieldTelefone = new JTextField();
 		textFieldTelefone.setBounds(500, 348, 106, 20);
+		textFieldTelefone.setDocument(new FormataTexto(12, 'D'));
 		add(textFieldTelefone);
 		textFieldTelefone.setColumns(10);
 		
 		textFieldEmail = new JTextField();
-		textFieldEmail.setText("");
+		textFieldEmail.setText("exemplo@exemplo.com");
+		textFieldEmail.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textFieldEmail.setText("");
+			}
+		});
 		textFieldEmail.setBounds(500, 448, 271, 20);
 		add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 		
 		textFieldConfirmarEmail = new JTextField();
+		textFieldConfirmarEmail.setText("exemplo@exemplo.com");
+		textFieldConfirmarEmail.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textFieldConfirmarEmail.setText("");
+			}
+		});
 		textFieldConfirmarEmail.setBounds(500, 498, 271, 20);
 		add(textFieldConfirmarEmail);
 		textFieldConfirmarEmail.setColumns(10);
@@ -341,6 +365,7 @@ public class TelaQuestio1 extends JPanel {
 		textFieldTelefoneResidencial.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("Telefone (Residencial)");
+		lblNewLabel_6.setForeground(Color.GRAY);
 		lblNewLabel_6.setBounds(366, 401, 140, 14);
 		add(lblNewLabel_6);
 		
@@ -384,14 +409,6 @@ public class TelaQuestio1 extends JPanel {
 		JLabel label_8 = new JLabel("DDD + N\u00FAmero  Ex: 01140028922");
 		label_8.setBounds(635, 401, 242, 14);
 		add(label_8);
-		
-		JLabel lblExamploexemplocom = new JLabel("exemplo@exemplo.com");
-		lblExamploexemplocom.setBounds(783, 451, 217, 14);
-		add(lblExamploexemplocom);
-		
-		JLabel label_9 = new JLabel("exemplo@exemplo.com");
-		label_9.setBounds(781, 501, 217, 14);
-		add(label_9);
 		
 		JLabel lblMaxLetras = new JLabel("Max. 35 letras");
 		lblMaxLetras.setBounds(852, 151, 98, 14);

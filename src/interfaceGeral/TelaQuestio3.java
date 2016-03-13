@@ -98,6 +98,7 @@ public class TelaQuestio3 extends JPanel {
 		add(lblNewLabel_1);
 		
 		JLabel lblLocaisParaEstgio = new JLabel("Local para Est\u00E1gio");
+		lblLocaisParaEstgio.setForeground(Color.GRAY);
 		lblLocaisParaEstgio.setBounds(382, 301, 126, 14);
 		add(lblLocaisParaEstgio);
 		
